@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Unity が読める .NET Standard 2.1 に合わせる -->
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Configuration>Release</Configuration>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <!-- Unity に一緒に置くため、FSharp.Core.dll も出力先にコピーする -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+</Project>

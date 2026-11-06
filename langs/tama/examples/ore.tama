@@ -1,0 +1,24 @@
+// ラスボス。時間は秒（s、ms）かフレーム（frames）で書く
+boss LastBoss {
+  let base = #ff3366
+
+  until hp < 50% {                          // HP が 50% を切るまで繰り返す
+    repeat 12 every 0.2s as k {             // 0.2 秒ごとに 12 回
+      ring 36, speed: 2m/s + k * 0.1m/s, turn: k * 7deg,
+               color: base + k * 30deg      // 色に角度を足すと色相が回る
+    }
+  }
+
+  until hp < 25% {
+    during 2s every 2frames as t {          // 2 秒かけて t が 0 → 1。2 フレームごと
+      aim speed: ease_out(t) * 6m/s, color: (#00ffff → #ff00ff) at t
+    }
+  }
+
+  fork 3 as i {                             // 中断状態を 3 つにコピー。3 体の分身が同時に動く
+    repeat forever every 0.5s as k {
+      ring 12, speed: 2m/s + i * 0.8m/s, turn: i * 10deg + k * 9deg,
+               color: base + i * 120deg     // 分身ごとに速さと色を変える
+    }
+  }
+}

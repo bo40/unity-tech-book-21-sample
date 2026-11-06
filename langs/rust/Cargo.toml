@@ -1,0 +1,31 @@
+[package]
+name = "unihub"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+# cdylib: Unity が読む .dll/.so/.dylib、rlib: examples から使うため
+crate-type = ["cdylib", "rlib"]
+
+[features]
+# jit: Cranelift を入れて .wasm をその場でコンパイルできるようにする（ホストでの事前コンパイル用）。
+# Unity に載せるビルドは --no-default-features にして、事前コンパイル済みの .cwasm だけを読む
+default = ["jit"]
+jit = ["wasmtime/cranelift"]
+
+[dependencies]
+wasmtime = { version = "50.0.0", default-features = false, features = ["runtime", "std", "async", "gc", "gc-drc"] }
+wasmtime-wasi = { version = "50.0.0", default-features = false, features = ["p1"] }
+rquickjs = "0.14.0"
+rayon = "1.11"
+
+# rquickjs は Android 用のバインディングを同梱していないので、Android 向けのときだけ bindgen で生成する
+[target.'cfg(target_os = "android")'.dependencies]
+rquickjs = { version = "0.14.0", features = ["bindgen"] }
+
+[[example]]
+name = "precompile"
+required-features = ["jit"]
+
+[profile.release]
+strip = true

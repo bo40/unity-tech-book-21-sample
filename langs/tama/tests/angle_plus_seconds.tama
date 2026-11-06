@@ -1,0 +1,3 @@
+boss Bad {
+  ring 8, speed: 1m/s, turn: 7deg + 0.2s
+}

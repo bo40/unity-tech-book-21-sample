@@ -1,0 +1,5 @@
+<!-- F# のアセンブリはリフレクション（sprintf "%A" など）で型をたどるので、ストリップさせない -->
+<linker>
+  <assembly fullname="FSharp.Core" preserve="all" />
+  <assembly fullname="BossFSharp" preserve="all" />
+</linker>

@@ -1,0 +1,4 @@
+boss Bad {
+  ring 8, speed: 1m/s
+  wait 10
+}

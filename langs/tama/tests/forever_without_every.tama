@@ -1,0 +1,5 @@
+boss Bad {
+  repeat forever {
+    aim speed: 3m/s
+  }
+}

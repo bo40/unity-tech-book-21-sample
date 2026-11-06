@@ -1,0 +1,5 @@
+boss Bad {
+  repeat 4 every 0.1s as k {
+    ring 8, speed: 1m/s, turn: k * 7
+  }
+}

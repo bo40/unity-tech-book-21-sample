@@ -1,0 +1,7 @@
+(executable
+ (name tamac))
+
+(ocamllex lexer)
+
+(menhir
+ (modules parser))
